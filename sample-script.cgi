@@ -44,7 +44,7 @@ if form.getvalue('action') == 'vote':
         else:
             token = qid.split('/')
             #print 'Location: http://www.google.com'
-            print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
+            print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
     else:
         vote = form.getvalue('vote').lower()
         qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
@@ -68,12 +68,12 @@ if form.getvalue('action') == 'vote':
         else:
             token = qid.split('/')
             #print 'Location: http://www.google.com'
-            print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
+            print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
     return
 
 #redirect to the set up main page
 if not form.getvalue('action'):
-    print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=list'
+    print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=list'
 
 print "Content-type:text/html\r\n\r\n"
 print '<html>'
@@ -96,21 +96,21 @@ if action == 'list':
     for line in proc.stdout:
         q = line.split('/')
         print '<li style="height:5px;">'
-        print '<a href="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=view&uid=' + q[0] + '&qname=' + q[1] + '">'
+        print '<a href="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid=' + q[0] + '&qname=' + q[1] + '">'
         print line
         print '</a>'
         print '</li>'
         print '<br>'
     print '</ul>'
     print '<ul style="font-size:20px;height:50px;">'
-    print '<a href="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=create">'
+    print '<a href="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=create">'
     print 'Add question' 
     print '</a>'
     print '</ul>'
 
 elif action == 'create':
     if not form.getvalue('submit'):
-        print '<form method="post" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi">'
+        print '<form method="post" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi">'
         print '<div style="width:30%;height:30px">'
         print 'Question Id: '
         print '<input style="width:78%;height:80%;"type="text" name="name">'
@@ -140,7 +140,7 @@ elif action == 'create':
             print '<button type="button" onclick="history.go(-1)">Back</button>'
         else:
             print 'Question added!'
-            print '<button type="button" onclick="location.href=\'http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=list&uid=ytl264\'">Confirm</button>'
+            print '<button type="button" onclick="location.href=\'http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=list&uid=ytl264\'">Confirm</button>'
 
 elif action == 'view':
     if not form.getvalue('uid') or not form.getvalue('qname'):
@@ -189,7 +189,7 @@ elif action == 'view':
             #print '</div>'
             print '</div>'
             print '<div style="height:30px;width:30%;line-height:30px;">'
-            print '<form method="post" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi">'
+            print '<form method="post" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi">'
             print '<input type="hidden" name="action" value="vote">'
             print '<input type="hidden" name="qid" value="'+ str(q.qid) +'">'
             print '<input style="float:right;height:100%;width:20%;" type="submit" name="vote" value="Down">'
@@ -215,7 +215,7 @@ elif action == 'view':
                 print '</span>'
                 print '</div>'
                 print '<div style="height:30px;width:30%;line-height:30px;">'
-                print '<form method="post" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi">'
+                print '<form method="post" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi">'
                 print '<input type="hidden" name="action" value="vote">'
                 print '<input type="hidden" name="aid" value="'+ str(entry.aid) +'">'
                 print '<input type="hidden" name="qid" value="'+ str(entry.qid) +'">'
@@ -232,7 +232,7 @@ elif action == 'view':
                 print '<div style="height:5px;width:28%;margin:0 0 5px 1%;border-bottom:2px solid rgb(180, 180, 180)"></div>'           
             print '<br>'
             print '<ul style="font-size:20px;height:50px;">'
-            print '<a href="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=answer&uid='+uid+'&qname='+qname+'">'
+            print '<a href="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=answer&uid='+uid+'&qname='+qname+'">'
             print 'Add answer' 
             print '</a>'
             print '</ul>'
@@ -241,7 +241,7 @@ elif action == 'answer':
     if not form.getvalue('submit'):
         uid = form.getvalue('uid')
         qname = form.getvalue('qname')
-        print '<form method="post" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi">'
+        print '<form method="post" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi">'
         print '<div style="width:30%;height:30px">'
         print 'Answer Id: '
         print '<input style="width:78%;height:80%;"type="text" name="name">'
@@ -274,7 +274,7 @@ elif action == 'answer':
             print '<button type="button" onclick="history.go(-1)">Back</button>'
         else:
             print 'Answer added!'
-            print '<button type="button" onclick="location.href=\'http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=view&uid='+uid+'&qname='+qname+'\'">Confirm</button>'
+            print '<button type="button" onclick="location.href=\'http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+uid+'&qname='+qname+'\'">Confirm</button>'
 
 print '</body>'
 print '</html>'
