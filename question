@@ -202,8 +202,8 @@ if [[ $1 == view ]]; then
 			while read usr; do
 				if [[ -f "/home/$usr/.question/votes/$user/$qname" ]]; then
 					echo "/home/$usr/.question/votes/$user/$qname"
-					echo "fuck"
-					vote=$(grep "^\(up\|down\)$" "/home/ytl264/.question/votes/ytl264/q1" | tail -1)
+					vote=$(grep "^\(up\|down\)\s*$" "/home/ytl264/.question/votes/ytl264/q1" | tail -1)
+					echo $vote
 					if [[ $vote == up ]]; then
 						count=$((count+1))
 					elif [[ $vote == down ]]; then				
