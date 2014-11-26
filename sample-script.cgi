@@ -22,56 +22,8 @@ cgitb.enable()
 form = cgi.FieldStorage()
 
 if form.getvalue('action') == 'vote':
-    print "heelo"
-    '''
-    if not form.getvalue('aid'):
-        vote = form.getvalue('vote').lower()
-        qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
-        cmd = ['./question', 'vote', vote, qid]
-        print cmd
-        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        str = proc.communicate()
-        if proc.returncode != 0:
-            print "Content-type:text/html\r\n\r\n"
-            print '<html>'
-            print '<head>'
-            print '<title>ytl264</title>'
-            print '</head>'
-            print '<body>'
-            print '<h2>TIN - Open Sourse Tool HW3</h2>'
-            print str[1]
-            print '<button type="button" onclick="history.go(-1)">Back</button>'
-            print '</body>'
-            print '</html>'
-        else:
-            token = qid.split('/')
-            #print 'Location: http://www.google.com'
-            print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
-    else:
-        vote = form.getvalue('vote').lower()
-        qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
-        aid = form.getvalue('aid').strip(' \t\n\r')
-        cmd = ['./question', 'vote', vote, qid, aid]
-        print cmd
-        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        str = proc.communicate()
-        if proc.returncode != 0:
-            print "Content-type:text/html\r\n\r\n"
-            print '<html>'
-            print '<head>'
-            print '<title>ytl264</title>'
-            print '</head>'
-            print '<body>'
-            print '<h2>TIN - Open Sourse Tool HW3</h2>'
-            print str[1]
-            print '<button type="button" onclick="history.go(-1)">Back</button>'
-            print '</body>'
-            print '</html>'
-        else:
-            token = qid.split('/')
-            #print 'Location: http://www.google.com'
-            print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
-'''
+    print 'heelo'
+
 #redirect to the set up main page
 if not form.getvalue('action'):
     print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=list'
