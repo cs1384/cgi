@@ -195,7 +195,7 @@ elif action == 'vote':
             print '<button type="button" onclick="history.go(-1)">Back</button>'
         else:
             token = qid.split('/')
-            url = 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
+            url = 'http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
             redirect(url)
             #print 'Location: http://www.google.com'
             #print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
@@ -212,7 +212,7 @@ elif action == 'vote':
             print '<button type="button" onclick="history.go(-1)">Back</button>'
         else:
             token = qid.split('/')
-            url = 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
+            url = 'http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
             redirect(url)
             #print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
 
