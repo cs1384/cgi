@@ -18,7 +18,7 @@ if [[ $# < 1 ]]; then
 fi
 
 if [[ -f $1 ]]; then
-	return true
+	return 1
 else
-	return false
+	return 0
 fi
