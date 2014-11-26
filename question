@@ -205,7 +205,7 @@ if [[ $1 == view ]]; then
 					echo $vote
 					if [[ $vote == up ]]; then
 						count=$((count+1))
-					else						
+					elif [[ $vote == down ]]; then				
 						count=$((count-1))
 					fi
 				 	#count=$((count+$(sed -n -e "/^up\s*$/p" "/home/$usr/.question/votes/$user/$qname" | wc -l)))
