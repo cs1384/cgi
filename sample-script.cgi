@@ -248,6 +248,7 @@ elif action == 'answer':
         name = form.getvalue('name')
         qid = form.getvalue('qid')
         cmd = ['./question', 'answer', qid, name, answer]
+        print cmd
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
         std = proc.communicate()
         if proc.returncode != 0:

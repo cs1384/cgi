@@ -14,56 +14,9 @@ import sys
 cgitb.enable()
 form = cgi.FieldStorage()
 
-if form.getvalue('action') == 'vote':
-    if not form.getvalue('aid'):
-        vote = form.getvalue('vote').lower()
-        qid = form.getvalue('qid').strip(' \t\n\r')
-        cmd = ['./question', 'vote', vote, qid]
-        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        str = proc.communicate()
-        if proc.returncode != 0:
-            print "Content-type:text/html\r\n\r\n"
-            print '<html>'
-            print '<head>'
-            print '<title>ytl264</title>'
-            print '</head>'
-            print '<body>'
-            print '<h2>TIN - Open Sourse Tool HW3</h2>'
-            print str[1]
-            print '<button type="button" onclick="history.go(-1)">Back</button>'
-            print '</body>'
-            print '</html>'
-        else:
-            token = qid.split('/')
-            print 'Location: http://www.google.com'
-            #print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
-    else:
-        vote = form.getvalue('vote').lower()
-        qid = form.getvalue('qid').strip(' \t\n\r')
-        aid = form.getvalue('aid').strip(' \t\n\r')
-        cmd = ['./question', 'vote', vote, qid, aid]
-        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        str = proc.communicate()
-        if proc.returncode != 0:
-            print "Content-type:text/html\r\n\r\n"
-            print '<html>'
-            print '<head>'
-            print '<title>ytl264</title>'
-            print '</head>'
-            print '<body>'
-            print '<h2>TIN - Open Sourse Tool HW3</h2>'
-            print str[1]
-            print '<button type="button" onclick="history.go(-1)">Back</button>'
-            print '</body>'
-            print '</html>'
-        else:
-            token = qid.split('/')
-            print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
-
-
 #redirect to the set up main page
 if not form.getvalue('action'):
-	print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=list'
+    print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=list'
 
 print "Content-type:text/html\r\n\r\n"
 print '<html>'
@@ -220,28 +173,42 @@ elif action == 'view':
             print 'Add answer' 
             print '</a>'
             print '</ul>'
-'''
+
 elif action == 'vote':
     if not form.getvalue('aid'):
         vote = form.getvalue('vote').lower()
         qid = form.getvalue('qid').strip(' \t\n\r')
         cmd = ['./question', 'vote', vote, qid]
+        print cmd
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         str = proc.communicate()
         if proc.returncode != 0:
-            print str[1] 
+            print str[1]
             print '<button type="button" onclick="history.go(-1)">Back</button>'
         else:
             token = qid.split('/')
-            print 'Voted!'
+            #print 'Location: http://www.google.com'
             print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
+    else:
+        vote = form.getvalue('vote').lower()
+        qid = form.getvalue('qid').strip(' \t\n\r')
+        aid = form.getvalue('aid').strip(' \t\n\r')
+        cmd = ['./question', 'vote', vote, qid, aid]
+        print cmd
+        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        str = proc.communicate()
+        if proc.returncode != 0:
+            print str[1]
             print '<button type="button" onclick="history.go(-1)">Back</button>'
-'''
-
-
+        else:
+            token = qid.split('/')
+            print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
 
 elif action == 'answer':
     if not form.getvalue('submit'):
+        uid = form.getvalue('uid')
+        qname = form.getvalue('qname')
+        qid = uid + '/' + qname
         print '<form method="post" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi">'
         print '<div style="width:30%;height:30px">'
         print 'Answer Id: '
@@ -254,6 +221,7 @@ elif action == 'answer':
         print '</div>'
         print '<div style="height:35px;margin:10px;">'
         print '<input type="hidden" name="action" value="answer">'
+        print '<input type="hidden" name="qid" value="'+str(qid)+'">'
         print '<button type="button" style="height:100%;" onclick="history.go(-1)">Cancel</button>'
         print '<input style="height:100%;"type="submit" name="submit" value="Submit">'
         print '</div>'
@@ -261,15 +229,17 @@ elif action == 'answer':
     else:
         answer = form.getvalue('answer')
         name = form.getvalue('name')
-        cmd = ['./question', 'create', name, question]
+        qid = form.getvalue('qid')
+        cmd = ['./question', 'answer', qid, name, answer]
+        print cmd
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
         std = proc.communicate()
         if proc.returncode != 0:
             print std[1]
             print '<button type="button" onclick="history.go(-1)">Back</button>'
         else:
-            print 'Question added!'
-            print '<button type="button" onclick="location.href=\'http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=list&uid=ytl264\'">Confirm</button>'
+            print 'Answer added!'
+            print '<button type="button" onclick="location.href=\'http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+uid+'&qname='+qname+'\'">Confirm</button>'
 
 
 
