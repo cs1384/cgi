@@ -208,7 +208,6 @@ elif action == 'answer':
     if not form.getvalue('submit'):
         uid = form.getvalue('uid')
         qname = form.getvalue('qname')
-        qid = uid + '/' + qname
         print '<form method="post" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi">'
         print '<div style="width:30%;height:30px">'
         print 'Answer Id: '
@@ -221,15 +220,18 @@ elif action == 'answer':
         print '</div>'
         print '<div style="height:35px;margin:10px;">'
         print '<input type="hidden" name="action" value="answer">'
-        print '<input type="hidden" name="qid" value="'+str(qid)+'">'
+        print '<input type="hidden" name="uid" value="'+str(uid)+'">'
+        print '<input type="hidden" name="qname" value="'+str(qname)+'">'
         print '<button type="button" style="height:100%;" onclick="history.go(-1)">Cancel</button>'
         print '<input style="height:100%;"type="submit" name="submit" value="Submit">'
         print '</div>'
         print '</form>'
     else:
+        uid = form.getvalue('uid')
+        qname = form.getvalue('qname')
+        qid = uid + '/' + qname
         answer = form.getvalue('answer').strip(' \t\n\r')
         name = form.getvalue('name')
-        qid = form.getvalue('qid')
         cmd = ['./question', 'answer', qid, name, answer]
         print cmd
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
