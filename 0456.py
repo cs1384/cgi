@@ -220,6 +220,25 @@ elif action == 'view':
             print 'Add answer' 
             print '</a>'
             print '</ul>'
+'''
+elif action == 'vote':
+    if not form.getvalue('aid'):
+        vote = form.getvalue('vote').lower()
+        qid = form.getvalue('qid').strip(' \t\n\r')
+        cmd = ['./question', 'vote', vote, qid]
+        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        str = proc.communicate()
+        if proc.returncode != 0:
+            print str[1] 
+            print '<button type="button" onclick="history.go(-1)">Back</button>'
+        else:
+            token = qid.split('/')
+            print 'Voted!'
+            print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
+            print '<button type="button" onclick="history.go(-1)">Back</button>'
+'''
+
+
 
 elif action == 'answer':
     if not form.getvalue('submit'):
