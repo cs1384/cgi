@@ -21,9 +21,10 @@ import random
 cgitb.enable()
 form = cgi.FieldStorage()
 
+'''
 if form.getvalue('action') == 'vote':
     print 'heelo'
-
+'''
 #redirect to the set up main page
 if not form.getvalue('action'):
     print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=list'
