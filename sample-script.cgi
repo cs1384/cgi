@@ -17,8 +17,9 @@ form = cgi.FieldStorage()
 if form.getvalue('action') == 'vote':
     if not form.getvalue('aid'):
         vote = form.getvalue('vote').lower()
-        qid = form.getvalue('qid').strip(' \t\n\r')
+        qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
         cmd = ['./question', 'vote', vote, qid]
+        print cmd
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         str = proc.communicate()
         if proc.returncode != 0:
@@ -35,13 +36,14 @@ if form.getvalue('action') == 'vote':
             print '</html>'
         else:
             token = qid.split('/')
-            print 'Location: http://www.google.com'
-            #print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
+            #print 'Location: http://www.google.com'
+            print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
     else:
         vote = form.getvalue('vote').lower()
-        qid = form.getvalue('qid').strip(' \t\n\r')
+        qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
         aid = form.getvalue('aid').strip(' \t\n\r')
         cmd = ['./question', 'vote', vote, qid, aid]
+        print cmd
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         str = proc.communicate()
         if proc.returncode != 0:
@@ -60,10 +62,9 @@ if form.getvalue('action') == 'vote':
             token = qid.split('/')
             print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
 
-
 #redirect to the set up main page
 if not form.getvalue('action'):
-	print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=list'
+    print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=list'
 
 print "Content-type:text/html\r\n\r\n"
 print '<html>'
@@ -122,6 +123,7 @@ elif action == 'create':
         name = form.getvalue('name')
         #print name
         cmd = ['./question', 'create', name, question]
+        print cmd
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
         std = proc.communicate()
         if proc.returncode != 0:
@@ -189,7 +191,8 @@ elif action == 'view':
             print '</div>'                 
             print '<div style="height:5px;width:28%;margin:0 0 5px 1%;border-bottom:2px solid black"></div>'               
 
-            sorted(list, key=lambda Entry: Entry.vote)
+            list = sorted(list, key=lambda Entry: Entry.vote, reverse=True)
+
             for entry in list:
                 print '<div style="margin:5px 0 0 1%;font-size:25px;width:30%;">'
                 print entry.content
@@ -225,11 +228,10 @@ elif action == 'answer':
     if not form.getvalue('submit'):
         uid = form.getvalue('uid')
         qname = form.getvalue('qname')
-        qid = uid + '/' + qname
         print '<form method="post" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi">'
         print '<div style="width:30%;height:30px">'
         print 'Answer Id: '
-        print '<input style="width:78%;height:80%;"type="text" name="a\name">'
+        print '<input style="width:78%;height:80%;"type="text" name="name">'
         print '</div>'
         print '<div style="width:30%;height:70px;">'
         print '<textarea style="font-size:20px;height:100%;width:100%;" name="answer" align="top">'
@@ -238,15 +240,18 @@ elif action == 'answer':
         print '</div>'
         print '<div style="height:35px;margin:10px;">'
         print '<input type="hidden" name="action" value="answer">'
-        print '<input type="hidden" name="qid" value="'+str(qid)+'">'
+        print '<input type="hidden" name="uid" value="'+str(uid)+'">'
+        print '<input type="hidden" name="qname" value="'+str(qname)+'">'
         print '<button type="button" style="height:100%;" onclick="history.go(-1)">Cancel</button>'
         print '<input style="height:100%;"type="submit" name="submit" value="Submit">'
         print '</div>'
         print '</form>'
     else:
+        uid = form.getvalue('uid')
+        qname = form.getvalue('qname')
+        qid = uid + '/' + qname
         answer = form.getvalue('answer')
         name = form.getvalue('name')
-        qid = form.getvalue('qid')
         cmd = ['./question', 'answer', qid, name, answer]
         print cmd
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
