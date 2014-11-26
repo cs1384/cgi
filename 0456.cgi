@@ -146,7 +146,7 @@ elif action == 'view':
             for entry in list:
                 print entry.vote
 
-            list = sorted(list, key=lambda Entry: Entry.vote, reverse=true)
+            list = sorted(list, key=lambda Entry: Entry.vote, reverse=True)
 
             for entry in list:
                 print entry.vote
