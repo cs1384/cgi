@@ -73,7 +73,7 @@ if [[ $1 == answer ]]; then
 		echo "Invalid arguments: ""$3" > /dev/stderr
 		exit 1
 	fi
-	if [[ -f $HOME/.question/answers/$user/$qname/$3 ]]; then
+	if [[ -f /home/ytl264/.question/answers/$user/$qname/$3 ]]; then
 		echo "The answer name exists already" > /dev/stderr
 		exit 1
 	fi
@@ -91,15 +91,15 @@ if [[ $1 == answer ]]; then
 		echo "not added! empty answer" > /dev/stderr
 		exit 1
 	fi
-	assureDirExists "$HOME/.question"
-	assureDirExists "$HOME/.question/answers"
-	assureDirExists "$HOME/.question/answers/$user"
-	assureDirExists "$HOME/.question/answers/$user/$qname"
+	assureDirExists "/home/ytl264/.question"
+	assureDirExists "/home/ytl264/.question/answers"
+	assureDirExists "/home/ytl264/.question/answers/$user"
+	assureDirExists "/home/ytl264/.question/answers/$user/$qname"
 	SAVEIFS=$IFS
 	IFS=
-	touch "$HOME/.question/answers/$user/$qname/$3"
-	chmod 705 "$HOME/.question/answers/$user/$qname/$3"
-	echo $content >> "$HOME/.question/answers/$user/$qname/$3"
+	touch "/home/ytl264/.question/answers/$user/$qname/$3"
+	chmod 705 "/home/ytl264/.question/answers/$user/$qname/$3"
+	echo $content >> "/home/ytl264/.question/answers/$user/$qname/$3"
 	IFS=SAVEIFS
 	exit 0
 fi
@@ -151,14 +151,14 @@ if [[ $1 == vote ]]; then
 		exit 1
 	fi
 	if [[ $4 == "" ]]; then
-		assureDirExists "$HOME/.question"
-		assureDirExists "$HOME/.question/votes"
-		assureDirExists "$HOME/.question/votes/$user"
-		touch "$HOME/.question/votes/$user/$qname"
-		chmod 705 "$HOME/.question/votes/$user/$qname"
-		sed -i -e "/^up$/d" "$HOME/.question/votes/$user/$qname"
-		sed -i -e "/^down$/d" "$HOME/.question/votes/$user/$qname"
-		echo $2 >> "$HOME/.question/votes/$user/$qname"
+		assureDirExists "/home/ytl264/.question"
+		assureDirExists "/home/ytl264/.question/votes"
+		assureDirExists "/home/ytl264/.question/votes/$user"
+		touch "/home/ytl264/.question/votes/$user/$qname"
+		chmod 705 "/home/ytl264/.question/votes/$user/$qname"
+		sed -i -e "/^up$/d" "/home/ytl264/.question/votes/$user/$qname"
+		sed -i -e "/^down$/d" "/home/ytl264/.question/votes/$user/$qname"
+		echo $2 >> "/home/ytl264/.question/votes/$user/$qname"
 	else
 		if [[ ! $4 = */* ]]; then
 			echo "Invalid arguments: ""$4" > /dev/stderr
@@ -170,14 +170,14 @@ if [[ $1 == vote ]]; then
 			echo "The answer does note exist" > /dev/stderr
 			exit 1
 		fi
-		assureDirExists "$HOME/.question"
-		assureDirExists "$HOME/.question/votes"
-		assureDirExists "$HOME/.question/votes/$user"
-		touch "$HOME/.question/votes/$user/$qname"
-		chmod 705 "$HOME/.question/votes/$user/$qname"
-		sed -i -e "/up $auser\/$aname/d" "$HOME/.question/votes/$user/$qname"
-		sed -i -e "/down $auser\/$aname/d" "$HOME/.question/votes/$user/$qname"
-		echo $2" "$auser"/"$aname >> "$HOME/.question/votes/$user/$qname"
+		assureDirExists "/home/ytl264/.question"
+		assureDirExists "/home/ytl264/.question/votes"
+		assureDirExists "/home/ytl264/.question/votes/$user"
+		touch "/home/ytl264/.question/votes/$user/$qname"
+		chmod 705 "/home/ytl264/.question/votes/$user/$qname"
+		sed -i -e "/up $auser\/$aname/d" "/home/ytl264/.question/votes/$user/$qname"
+		sed -i -e "/down $auser\/$aname/d" "/home/ytl264/.question/votes/$user/$qname"
+		echo $2" "$auser"/"$aname >> "/home/ytl264/.question/votes/$user/$qname"
 	fi
 	exit 0
 fi
