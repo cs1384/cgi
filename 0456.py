@@ -212,7 +212,7 @@ elif action == 'answer':
         print '<form method="post" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi">'
         print '<div style="width:30%;height:30px">'
         print 'Answer Id: '
-        print '<input style="width:78%;height:80%;"type="text" name="a\name">'
+        print '<input style="width:78%;height:80%;"type="text" name="name">'
         print '</div>'
         print '<div style="width:30%;height:70px;">'
         print '<textarea style="font-size:20px;height:100%;width:100%;" name="answer" align="top">'
