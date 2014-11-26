@@ -143,13 +143,7 @@ elif action == 'view':
             print '</div>'                 
             print '<div style="height:5px;width:28%;margin:0 0 5px 1%;border-bottom:2px solid black"></div>'               
 
-            for entry in list:
-                print entry.vote
-
             list = sorted(list, key=lambda Entry: Entry.vote, reverse=True)
-
-            for entry in list:
-                print entry.vote
 
             for entry in list:
                 print '<div style="margin:5px 0 0 1%;font-size:25px;width:30%;">'
