@@ -177,7 +177,7 @@ elif action == 'view':
                 print '</span>'
                 print '</div>'
                 print '<div style="height:30px;width:30%;line-height:30px;">'
-                print '<form method="get" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi">'
+                print '<form method="post" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi">'
                 print '<input type="hidden" name="action" value="vote">'
                 print '<input type="hidden" name="aid" value="'+ str(entry.aid) +'">'
                 print '<input type="hidden" name="qid" value="'+ str(entry.qid) +'">'
