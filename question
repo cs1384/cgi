@@ -227,7 +227,7 @@ if [[ $1 == view ]]; then
 						count=0
 						while read u; do
 							if [[ -f "/home/$u/.question/votes/$user/$qname" ]]; then							
-						 		print "/home/$u/.question/votes/$user/$qname"
+						 		echo "/home/$u/.question/votes/$user/$qname"
 						 		vote=$(egrep "(up|down)[ ]$usr[/]$ans[ ]*$" "/home/$usr/.question/votes/$user/$qname" | tail -1)
 								echo $vote
 								if [[ $vote == up* ]]; then
