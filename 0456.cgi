@@ -104,8 +104,9 @@ elif action == 'view':
         content = []
         for line in proc.stdout:
             content.append(line)
-            #print line
+            print line
         std = proc.communicate()
+        print "==================="
         if proc.returncode != 0:
             print std[1]
             print '<button type="button" onclick="history.go(-1)">Back</button>'
