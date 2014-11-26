@@ -207,7 +207,7 @@ if [[ $1 == view ]]; then
 						count = count + 1
 					else						
 						count = count - 1
-					if
+					fi
 				 	#count=$((count+$(sed -n -e "/^up\s*$/p" "/home/$usr/.question/votes/$user/$qname" | wc -l)))
 				 	#count=$((count-$(sed -n -e "/^down\s*$/p" "/home/$usr/.question/votes/$user/$qname" | wc -l)))
 				fi
