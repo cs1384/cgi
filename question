@@ -202,6 +202,9 @@ if [[ $1 == view ]]; then
 			while read usr; do
 				if [[ -f "/home/$usr/.question/votes/$user/$qname" ]]; then
 					vote=$(grep "^\(up\|down\)\s*$" "/home/$usr/.question/votes/$user/$qname" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' | tail -1)
+					echo "==="
+					echo vote
+					echo "==="
 					if [[ $vote == up ]]; then
 						count=$((count+1))
 					elif [[ $vote == down ]]; then				
