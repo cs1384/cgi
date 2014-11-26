@@ -20,7 +20,7 @@ import random
 
 cgitb.enable()
 form = cgi.FieldStorage()
-
+'''
 if form.getvalue('action') == 'vote':
     if not form.getvalue('aid'):
         vote = form.getvalue('vote').lower()
@@ -70,7 +70,7 @@ if form.getvalue('action') == 'vote':
             #print 'Location: http://www.google.com'
             print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
     return
-
+'''
 #redirect to the set up main page
 if not form.getvalue('action'):
     print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=list'
