@@ -228,6 +228,7 @@ elif action == 'answer':
         print '</form>'
     else:
         uid = form.getvalue('uid')
+        print uid
         qname = form.getvalue('qname')
         qid = uid + '/' + qname
         answer = form.getvalue('answer').strip(' \t\n\r')
