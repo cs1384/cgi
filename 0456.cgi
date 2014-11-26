@@ -207,8 +207,9 @@ elif action == 'vote':
 elif action == 'answer':
     if not form.getvalue('submit'):
         uid = form.getvalue('uid')
+        print uid
         qname = form.getvalue('qname')
-        print '<form method="post" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi">'
+        print '<form method="get" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi">'
         print '<div style="width:30%;height:30px">'
         print 'Answer Id: '
         print '<input style="width:78%;height:80%;"type="text" name="name">'
