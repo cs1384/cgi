@@ -146,11 +146,11 @@ elif action == 'view':
             for entry in list:
                 print entry.vote
 
-            sorted(list, key=lambda Entry: Entry.vote)
+            list = sorted(list, key=lambda Entry: Entry.vote)
 
             for entry in list:
                 print entry.vote
-                
+
             for entry in list:
                 print '<div style="margin:5px 0 0 1%;font-size:25px;width:30%;">'
                 print entry.content
