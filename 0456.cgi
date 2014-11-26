@@ -7,6 +7,12 @@ class Entry:
         self.aid = aid
         self.content = content
 
+def redirect(url):
+    print "Content-Type: text/plain"
+    print "Refresh: 0; url=%s" % url
+    #print 
+    #print "%s submited successfully. Redirecting to %s" % (message, url)
+
 import cgi, cgitb
 import subprocess
 import sys
@@ -189,8 +195,10 @@ elif action == 'vote':
             print '<button type="button" onclick="history.go(-1)">Back</button>'
         else:
             token = qid.split('/')
+            url = 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
+            redirect(url)
             #print 'Location: http://www.google.com'
-            print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
+            #print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
     else:
         vote = form.getvalue('vote').lower()
         qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
@@ -204,7 +212,9 @@ elif action == 'vote':
             print '<button type="button" onclick="history.go(-1)">Back</button>'
         else:
             token = qid.split('/')
-            print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
+            url = 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
+            redirect(url)
+            #print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
 
 elif action == 'answer':
     if not form.getvalue('submit'):
