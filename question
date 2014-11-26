@@ -156,8 +156,8 @@ if [[ $1 == vote ]]; then
 		assureDirExists "/home/ytl264/.question/votes/$user"
 		touch "/home/ytl264/.question/votes/$user/$qname"
 		chmod 705 "/home/ytl264/.question/votes/$user/$qname"
-		sed -i -e "/^up$/d" "/home/ytl264/.question/votes/$user/$qname"
-		sed -i -e "/^down$/d" "/home/ytl264/.question/votes/$user/$qname"
+		sed -i -e "/^up\s*$/d" "/home/ytl264/.question/votes/$user/$qname"
+		sed -i -e "/^down\s*$/d" "/home/ytl264/.question/votes/$user/$qname"
 		echo $2 >> "/home/ytl264/.question/votes/$user/$qname"
 	else
 		if [[ ! $4 = */* ]]; then
@@ -203,7 +203,6 @@ if [[ $1 == view ]]; then
 				if [[ -f "/home/$usr/.question/votes/$user/$qname" ]]; then
 					echo "/home/$usr/.question/votes/$user/$qname"
 					vote=$(grep "^\(up\|down\)\s*$" "/home/$usr/.question/votes/$user/$qname" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' | tail -1)
-					echo $vote
 					if [[ $vote == up ]]; then
 						count=$((count+1))
 						echo $count
