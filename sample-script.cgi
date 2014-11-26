@@ -223,6 +223,9 @@ elif action == 'view':
 
 elif action == 'answer':
     if not form.getvalue('submit'):
+        uid = form.getvalue('uid')
+        qname = form.getvalue('qname')
+        qid = uid + '/' + qname
         print '<form method="post" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi">'
         print '<div style="width:30%;height:30px">'
         print 'Answer Id: '
@@ -235,6 +238,7 @@ elif action == 'answer':
         print '</div>'
         print '<div style="height:35px;margin:10px;">'
         print '<input type="hidden" name="action" value="answer">'
+        print '<input type="hidden" name="qid" value="'+str(qid)+'">'
         print '<button type="button" style="height:100%;" onclick="history.go(-1)">Cancel</button>'
         print '<input style="height:100%;"type="submit" name="submit" value="Submit">'
         print '</div>'
@@ -242,15 +246,16 @@ elif action == 'answer':
     else:
         answer = form.getvalue('answer')
         name = form.getvalue('name')
-        cmd = ['./question', 'create', name, question]
+        qid = form.getvalue('qid')
+        cmd = ['./question', 'answer', qid, name, answer]
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
         std = proc.communicate()
         if proc.returncode != 0:
             print std[1]
             print '<button type="button" onclick="history.go(-1)">Back</button>'
         else:
-            print 'Question added!'
-            print '<button type="button" onclick="location.href=\'http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=list&uid=ytl264\'">Confirm</button>'
+            print 'Answer added!'
+            print '<button type="button" onclick="location.href=\'http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+uid+'&qname='+qname+'\'">Confirm</button>'
 
 
 
