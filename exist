@@ -8,5 +8,6 @@ fi
 if [[ -f $1 ]]; then
 	exit 0;
 else
+	echo "File not exist" > /dev/stderr
 	exit 1;
 fi
