@@ -35,9 +35,10 @@ if form.getvalue('action') == 'vote':
             print '</body>'
             print '</html>'
         else:
+
             token = qid.split('/')
             #print 'Location: http://www.google.com'
-            print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
+            #print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
     else:
         vote = form.getvalue('vote').lower()
         qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
@@ -60,7 +61,7 @@ if form.getvalue('action') == 'vote':
             print '</html>'
         else:
             token = qid.split('/')
-            print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
+            #print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
 
 #redirect to the set up main page
 if not form.getvalue('action'):
