@@ -104,6 +104,7 @@ elif action == 'view':
         content = []
         for line in proc.stdout:
             content.append(line)
+            print line
         std = proc.communicate()
         if proc.returncode != 0:
             print std[1]
@@ -123,7 +124,6 @@ elif action == 'view':
                     if count % 3 == 0:
                         token = line.split(' ')
                     elif count % 3 == 1:
-                        print token
                         q = Entry(token[0], '', token[1], line)
                 count = count + 1
             print '<div style="margin:0 0 0 1%;font-size:30px;width:30%;">'
