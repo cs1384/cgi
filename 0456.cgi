@@ -105,6 +105,7 @@ elif action == 'view':
         for line in proc.stdout:
             content.append(line)
             print line
+            print '<br>'
         std = proc.communicate()
         print "==================="
         if proc.returncode != 0:
