@@ -75,6 +75,7 @@ elif action == 'create':
         name = form.getvalue('name')
         #print name
         cmd = ['./question', 'create', name, question]
+        print cmd
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
         std = proc.communicate()
         if proc.returncode != 0:
@@ -207,7 +208,6 @@ elif action == 'vote':
 elif action == 'answer':
     if not form.getvalue('submit'):
         uid = form.getvalue('uid')
-        print uid
         qname = form.getvalue('qname')
         print '<form method="post" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi">'
         print '<div style="width:30%;height:30px">'
@@ -229,7 +229,6 @@ elif action == 'answer':
         print '</form>'
     else:
         uid = form.getvalue('uid')
-        print uid
         qname = form.getvalue('qname')
         qid = uid + '/' + qname
         answer = form.getvalue('answer').strip(' \t\n\r')
