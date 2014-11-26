@@ -181,7 +181,7 @@ elif action == 'view':
             print '<input style="float:right;height:100%;width:20%;" type="submit" name="vote" value="Up">'
             print '</form>'
             print '<div style="text-align:center;float:right;height:100%;width:15%;line-height:15px;">'
-            if q.vote >= 0:
+            if int(q.vote) >= 0:
                 print '+' + q.vote
             else:
                 print q.vote
@@ -216,7 +216,7 @@ elif action == 'view':
                 print '<div style="height:5px;width:28%;margin:0 0 5px 1%;border-bottom:2px solid rgb(180, 180, 180)"></div>'           
             print '<br>'
             print '<ul style="font-size:20px;height:50px;">'
-            print '<a href="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=answer">'
+            print '<a href="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=answer&uid='+uid+'&qname='+qname+'">'
             print 'Add answer' 
             print '</a>'
             print '</ul>'
@@ -237,6 +237,37 @@ elif action == 'vote':
             print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
             print '<button type="button" onclick="history.go(-1)">Back</button>'
 '''
+elif action == 'answer':
+    if not form.getvalue('submit'):
+        print '<form method="post" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi">'
+        print '<div style="width:30%;height:30px">'
+        print 'Answer Id: '
+        print '<input style="width:78%;height:80%;"type="text" name="a\name">'
+        print '</div>'
+        print '<div style="width:30%;height:70px;">'
+        print '<textarea style="font-size:20px;height:100%;width:100%;" name="answer" align="top">'
+        print "Answer here."
+        print '</textarea>'
+        print '</div>'
+        print '<div style="height:35px;margin:10px;">'
+        print '<input type="hidden" name="action" value="answer">'
+        print '<button type="button" style="height:100%;" onclick="history.go(-1)">Cancel</button>'
+        print '<input style="height:100%;"type="submit" name="submit" value="Submit">'
+        print '</div>'
+        print '</form>'
+    else:
+        answer = form.getvalue('answer')
+        name = form.getvalue('name')
+        cmd = ['./question', 'create', name, question]
+        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
+        std = proc.communicate()
+        if proc.returncode != 0:
+            print std[1]
+            print '<button type="button" onclick="history.go(-1)">Back</button>'
+        else:
+            print 'Question added!'
+            print '<button type="button" onclick="location.href=\'http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=list&uid=ytl264\'">Confirm</button>'
+
 
 
 print '</body>'
