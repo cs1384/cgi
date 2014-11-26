@@ -178,7 +178,7 @@ elif action == 'view':
 elif action == 'vote':
     if not form.getvalue('aid'):
         vote = form.getvalue('vote').lower()
-        qid = form.getvalue('qid').strip(' \t\n\r')
+        qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
         cmd = ['./question', 'vote', vote, qid]
         print cmd
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -192,7 +192,7 @@ elif action == 'vote':
             print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/0456.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
     else:
         vote = form.getvalue('vote').lower()
-        qid = form.getvalue('qid').strip(' \t\n\r')
+        qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
         aid = form.getvalue('aid').strip(' \t\n\r')
         cmd = ['./question', 'vote', vote, qid, aid]
         print cmd
@@ -231,7 +231,7 @@ elif action == 'answer':
         uid = form.getvalue('uid')
         qname = form.getvalue('qname')
         qid = uid + '/' + qname
-        answer = '"' + form.getvalue('answer').strip(' \t\n\r') + '"'
+        answer = form.getvalue('answer')
         name = form.getvalue('name')
         cmd = ['./question', 'answer', qid, name, answer]
         print cmd
