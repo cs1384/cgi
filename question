@@ -205,9 +205,9 @@ if [[ $1 == view ]]; then
 					#vote=$(grep "^\(up\|down\)\s*$" "/home/$usr/.question/votes/$user/$qname" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' | tail -1)
 					vote=$(grep "^\(up\|down\)\s*$" "/home/$usr/.question/votes/$user/$qname" | tail -1)
 					echo $vote
-					if [[ $vote == up ]]; then
+					if [[ $vote == up* ]]; then
 						count=$((count+1))
-					elif [[ $vote == down ]]; then				
+					elif [[ $vote == down* ]]; then				
 						count=$((count-1))
 					fi
 				 	#count=$((count+$(sed -n -e "/^up\s*$/p" "/home/$usr/.question/votes/$user/$qname" | wc -l)))
