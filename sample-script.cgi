@@ -219,7 +219,7 @@ elif action == 'view':
             print 'Add answer' 
             print '</a>'
             print '</ul>'
-            
+'''   
 elif action == 'vote':
     if not form.getvalue('aid'):
         vote = form.getvalue('vote').lower()
@@ -235,7 +235,7 @@ elif action == 'vote':
             print 'Voted!'
             print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
             print '<button type="button" onclick="history.go(-1)">Back</button>'
-
+'''
 print '</body>'
 print '</html>'
 
