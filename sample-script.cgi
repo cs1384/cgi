@@ -19,7 +19,6 @@ if form.getvalue('action') == 'vote':
         vote = form.getvalue('vote').lower()
         qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
         cmd = ['./question', 'vote', vote, qid]
-        print cmd
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         str = proc.communicate()
         if proc.returncode != 0:
@@ -35,16 +34,14 @@ if form.getvalue('action') == 'vote':
             print '</body>'
             print '</html>'
         else:
-
             token = qid.split('/')
             #print 'Location: http://www.google.com'
-            #print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
+            print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
     else:
         vote = form.getvalue('vote').lower()
         qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
         aid = form.getvalue('aid').strip(' \t\n\r')
         cmd = ['./question', 'vote', vote, qid, aid]
-        print cmd
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         str = proc.communicate()
         if proc.returncode != 0:
@@ -61,7 +58,7 @@ if form.getvalue('action') == 'vote':
             print '</html>'
         else:
             token = qid.split('/')
-            #print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
+            print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
 
 #redirect to the set up main page
 if not form.getvalue('action'):
@@ -252,7 +249,10 @@ elif action == 'answer':
         qname = form.getvalue('qname')
         qid = uid + '/' + qname
         answer = form.getvalue('answer')
-        name = form.getvalue('name')
+        if not form.getvalue('name'):
+            print 'test'
+        else:
+            name = form.getvalue('name')
         cmd = ['./question', 'answer', qid, name, answer]
         print cmd
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
@@ -263,8 +263,6 @@ elif action == 'answer':
         else:
             print 'Answer added!'
             print '<button type="button" onclick="location.href=\'http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=view&uid='+uid+'&qname='+qname+'\'">Confirm</button>'
-
-
 
 print '</body>'
 print '</html>'
