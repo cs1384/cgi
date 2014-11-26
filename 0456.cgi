@@ -16,6 +16,7 @@ def redirect(url):
 import cgi, cgitb
 import subprocess
 import sys
+import random
 
 cgitb.enable()
 form = cgi.FieldStorage()
