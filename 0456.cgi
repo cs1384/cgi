@@ -231,7 +231,7 @@ elif action == 'answer':
         uid = form.getvalue('uid')
         qname = form.getvalue('qname')
         qid = uid + '/' + qname
-        answer = form.getvalue('answer')
+        answer = '"' + form.getvalue('answer').strip(' \t\n\r') + '"'
         name = form.getvalue('name')
         cmd = ['./question', 'answer', qid, name, answer]
         print cmd
