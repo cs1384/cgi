@@ -154,7 +154,7 @@ elif action == 'view':
                         body = body + line
                 elif division:
                     temp = line.strip(' \t\n\r').split('@')
-                    token = temp[0].strip(' \t\n\r').split(' ')
+                    token = temp[0].split(' ')
                     if len(token) > 2:
                         for i in range(2,len(token)-1):
                             token[1] = token[1] + ' ' + token[i]
