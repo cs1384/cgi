@@ -11,7 +11,7 @@ class Entry:
         self.vote = vote
         self.qid = qid
         self.aid = aid
-        self.content = cosssntent
+        self.content = content
 
 cgitb.enable()
 form = cgi.FieldStorage()
