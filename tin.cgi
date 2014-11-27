@@ -100,6 +100,20 @@ elif action == 'view':
         uid = form.getvalue('uid')
         qname = form.getvalue('qname')
         qid = uid + '/' + qname
+        if form.getvalue('vote'):
+            if not form.getvalue('aid'):
+                vote = form.getvalue('vote').lower()
+                #qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
+                cmd = ['./question', 'vote', vote, qid]
+                print cmd
+                proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            else:
+                vote = form.getvalue('vote').lower()
+                qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
+                aid = form.getvalue('aid').strip(' \t\n\r')
+                cmd = ['./question', 'vote', vote, qid, aid]
+                print cmd
+                proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         cmd = ['./question', 'view', qid]
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         content = []
@@ -140,8 +154,9 @@ elif action == 'view':
             print '</div>'
             print '<div style="height:30px;width:30%;line-height:30px;">'
             print '<form method="get">'
-            #print '<input type="hidden" name="action" value="vote">'
-            #print '<input type="hidden" name="uid" value="'+ str(q.qid) +'">'
+            print '<input type="hidden" name="action" value="view">'
+            print '<input type="hidden" name="uid" value="'+ uid +'">'
+            print '<input type="hidden" name="qname" value="'+ qname +'">'
             print '<input style="float:right;height:100%;width:20%;" type="submit" name="vote" value="Down">'
             print '<input style="float:right;height:100%;width:20%;" type="submit" name="vote" value="Up">'
             print '</form>'
@@ -166,9 +181,10 @@ elif action == 'view':
                 print '</div>'
                 print '<div style="height:30px;width:30%;line-height:30px;">'
                 print '<form method="post" action="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/tin.cgi">'
-                print '<input type="hidden" name="action" value="vote">'
+                print '<input type="hidden" name="action" value="view">'
                 print '<input type="hidden" name="aid" value="'+ str(entry.aid) +'">'
-                print '<input type="hidden" name="qid" value="'+ str(entry.qid) +'">'
+                print '<input type="hidden" name="uid" value="'+ uid +'">'
+                print '<input type="hidden" name="qname" value="'+ qname +'">'  
                 print '<input style="float:right;height:100%;width:20%;" type="submit" name="vote" value="Down">'
                 print '<input style="float:right;height:100%;width:20%;" type="submit" name="vote" value="Up">'
                 print '</form>'
