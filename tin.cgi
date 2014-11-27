@@ -27,10 +27,8 @@ print '<title>ytl264</title>'
 print '</head>'
 print '<body>'
 print '<h2>TIN - Open Sourse Tool HW3</h2>'
-print '<a href="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/tin.cgi">
-main</a>'
-print '<a href="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/tin.cgi?
-action=list&uid=ytl264">ytl264</a>
+print '<a href="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/tin.cgi">main</a>'
+print '<a href="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/tin.cgi?action=list&uid=ytl264">ytl264</a>'
 
 action = form.getvalue('action')
 
