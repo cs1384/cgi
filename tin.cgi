@@ -141,7 +141,7 @@ elif action == 'view':
                     print token
                     if len(token) > 2:
                         for i in range(2,len(token)-1):
-                            token[1] = token[1] + ' ' + token[i]
+                            token[1] = token[1] + ' ' + token[2]
                     print token
                     division = False
                 elif head:
