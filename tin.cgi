@@ -138,6 +138,9 @@ elif action == 'view':
             for line in content:
                 if head and division:
                     token = line.split(' ')
+                    if len(token) > 2:
+                        for i in range(2,len(token)-1):
+                            token[1] = token[1] + token[i]
                     division = False
                 elif head:
                     if '====' in line:
@@ -148,7 +151,12 @@ elif action == 'view':
                     else:
                         body = body + line
                 elif division:
-                    token = line.split(' ')
+                    temp = line.split('@')
+                    token = temp[0].split(' ')
+                    if len(token) > 2:
+                        for i in range(2,len(token)-1):
+                            token[1] = token[1] + token[i]
+                    token[2] = temp[1]
                     division = False
                 else:
                     if '====' in line:
