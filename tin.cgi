@@ -1,22 +1,17 @@
 #!/usr/local/bin/python
 
+import cgi, cgitb
+import subprocess
+import sys
+import random
+import os
+
 class Entry:
     def __init__(self, vote, aid, qid, content):
         self.vote = vote
         self.qid = qid
         self.aid = aid
-        self.content = content
-
-def redirect(url):
-    print "Content-Type: text/plain"
-    print "Refresh: 0; url=%s" % url
-    #print 
-    #print "%s submited successfully. Redirecting to %s" % (message, url)
-
-import cgi, cgitb
-import subprocess
-import sys
-import random
+        self.content = cosssntent
 
 cgitb.enable()
 form = cgi.FieldStorage()
@@ -79,7 +74,16 @@ elif action == 'create':
     else:
         question = form.getvalue('question')
         #print question
-        name = form.getvalue('name')
+        if not form.getvalue('name')
+            while True:
+                rand =  int(random.random()*1000000)
+                name = 'q' + str(rand)
+                path = '/home/ytl264/.question/questions/' + name
+                print path
+                if not os.path.exists(path)
+                    break
+        else:
+            name = form.getvalue('name')
         #print name
         cmd = ['./question', 'create', name, question]
         print cmd
@@ -213,40 +217,6 @@ elif action == 'view':
             print '</a>'
             print '</ul>'
 
-elif action == 'vote':
-    if not form.getvalue('aid'):
-        vote = form.getvalue('vote').lower()
-        qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
-        cmd = ['./question', 'vote', vote, qid]
-        print cmd
-        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        str = proc.communicate()
-        if proc.returncode != 0:
-            print str[1]
-            print '<button type="button" onclick="history.go(-1)">Back</button>'
-        else:
-            token = qid.split('/')
-            url = 'http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/tin.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
-            redirect(url)
-            #print 'Location: http://www.google.com'
-            #print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/tin.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
-    else:
-        vote = form.getvalue('vote').lower()
-        qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
-        aid = form.getvalue('aid').strip(' \t\n\r')
-        cmd = ['./question', 'vote', vote, qid, aid]
-        print cmd
-        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        str = proc.communicate()
-        if proc.returncode != 0:
-            print str[1]
-            print '<button type="button" onclick="history.go(-1)">Back</button>'
-        else:
-            token = qid.split('/')
-            url = 'http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/tin.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
-            redirect(url)
-            #print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/tin.cgi?action=view&uid='+ token[0] + '&qname=' + token[1]
-
 elif action == 'answer':
     if not form.getvalue('submit'):
         uid = form.getvalue('uid')
@@ -274,7 +244,16 @@ elif action == 'answer':
         qname = form.getvalue('qname')
         qid = uid + '/' + qname
         answer = form.getvalue('answer')
-        name = form.getvalue('name')
+        if not form.getvalue('name')
+            while True:
+                rand =  int(random.random()*1000000)
+                name = 'a' + str(rand)
+                path = '/home/ytl264/.question/answers/'+uid+'/'+qname+'/' + name
+                print path
+                if not os.path.exists(path)
+                    break
+        else:
+            name = form.getvalue('name')
         cmd = ['./question', 'answer', qid, name, answer]
         print cmd
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
