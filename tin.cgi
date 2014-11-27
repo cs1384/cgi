@@ -34,10 +34,10 @@ action = form.getvalue('action')
 
 if action == 'list':
     if not form.getvalue('uid'):
-        cmd = ['./question', 'list']
+        cmd = ['/home/ytl264/public_html/cgi-bin/question', 'list']
     else: 
         uid = form.getvalue('uid')
-        cmd = ['./question', 'list', uid]
+        cmd = ['/home/ytl264/public_html/cgi-bin/question', 'list', uid]
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     print '<ul style="font-size:20px;">'
     for line in proc.stdout:
@@ -87,7 +87,7 @@ elif action == 'create':
         else:
             name = form.getvalue('name')
         #print name
-        cmd = ['./question', 'create', name, question]
+        cmd = ['/home/ytl264/public_html/cgi-bin/question', 'create', name, question]
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
         std = proc.communicate()
         if proc.returncode != 0:
@@ -109,14 +109,14 @@ elif action == 'view':
             vote = form.getvalue('vote').lower()
             if not form.getvalue('aid'):
                 #qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
-                cmd = ['./question', 'vote', vote, qid]
+                cmd = ['/home/ytl264/public_html/cgi-bin/question', 'vote', vote, qid]
                 proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             else:
                 #qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
                 aid = form.getvalue('aid').strip(' \t\n\r')
-                cmd = ['./question', 'vote', vote, qid, aid]
+                cmd = ['/home/ytl264/public_html/cgi-bin/question', 'vote', vote, qid, aid]
                 proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        cmd = ['./question', 'view', qid]
+        cmd = ['/home/ytl264/public_html/cgi-bin/question', 'view', qid]
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         content = []
         for line in proc.stdout:
@@ -261,7 +261,7 @@ elif action == 'answer':
                     break
         else:
             name = form.getvalue('name')
-        cmd = ['./question', 'answer', qid, name, answer]
+        cmd = ['/home/ytl264/public_html/cgi-bin/question', 'answer', qid, name, answer]
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
         std = proc.communicate()
         if proc.returncode != 0:
