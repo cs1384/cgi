@@ -26,7 +26,7 @@ print '<head>'
 print '<title>ytl264</title>'
 print '</head>'
 print '<body>'
-print '<h2>TIN - Open Sourse Tool HW3 <<a href="http://cs.nyu.edu/cgi-bin/cgwrap/~ytl264/tin.cgi"> main </a> : <a href="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/tin.cgi?action=list&uid=ytl264"> ytl264 </a>></h2>'
+print '<h2>TIN - Open Sourse Tool HW3 <<a href="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/tin.cgi"> main </a> : <a href="http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/tin.cgi?action=list&uid=ytl264"> ytl264 </a>></h2>'
 
 
 
