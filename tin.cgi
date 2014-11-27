@@ -80,7 +80,7 @@ elif action == 'create':
                 name = 'q' + str(rand)
                 path = '/home/ytl264/.question/questions/' + name
                 print path
-                if not os.path.exists(path)
+                if not os.path.exists(path):
                     break
         else:
             name = form.getvalue('name')
@@ -250,7 +250,7 @@ elif action == 'answer':
                 name = 'a' + str(rand)
                 path = '/home/ytl264/.question/answers/'+uid+'/'+qname+'/' + name
                 print path
-                if not os.path.exists(path)
+                if not os.path.exists(path):
                     break
         else:
             name = form.getvalue('name')
