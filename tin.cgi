@@ -138,9 +138,9 @@ elif action == 'view':
             for line in content:
                 if head and division:
                     token = line.strip(' \t\n\r').split(' ')
-                    print len(token)
                     if len(token) > 2:
-                        for i in range(2,len(token)-1):
+                        print len(token)
+                        for i in range(2,len(token)):
                             token[1] = token[1] + ' ' + token[i]
                             print token[i]
                     division = False
