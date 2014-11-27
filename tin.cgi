@@ -122,10 +122,10 @@ elif action == 'view':
         content = []
         for line in proc.stdout:
             content.append(line)
-            print line
-            print '<br>'
+            #print line
+            #print '<br>'
         std = proc.communicate()
-        print "==================="
+        #print "==================="
         if proc.returncode != 0:
             print std[1]
             print '<button type="button" onclick="history.go(-1)">Back</button>'
@@ -139,10 +139,8 @@ elif action == 'view':
                 if head and division:
                     token = line.strip(' \t\n\r').split(' ')
                     if len(token) > 2:
-                        print len(token)
                         for i in range(2,len(token)):
                             token[1] = token[1] + ' ' + token[i]
-                            print token[i]
                     division = False
                 elif head:
                     if '====' in line:
