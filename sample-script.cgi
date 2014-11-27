@@ -32,8 +32,9 @@ if not form.getvalue('action'):
 action = form.getvalue('action')
 
 if action == 'vote':
-    print "Content-type:text/html\r\n\r\n"
-    print 'heelo'
+    print 'Location: http://www.google.com'
+    #print "Content-type:text/html\r\n\r\n"
+    #print 'heelo'
 else:
     print "Content-type:text/html\r\n\r\n"
     print '<html>'
