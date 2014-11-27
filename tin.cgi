@@ -157,6 +157,7 @@ elif action == 'view':
                     if len(token) > 2:
                         for i in range(2,len(token)-1):
                             token[1] = token[1] + ' ' + token[i]
+                    print token
                     token[2] = '@' + temp[1]
                     division = False
                 else:
