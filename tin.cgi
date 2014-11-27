@@ -101,15 +101,14 @@ elif action == 'view':
         qname = form.getvalue('qname')
         qid = uid + '/' + qname
         if form.getvalue('vote'):
+            vote = form.getvalue('vote').lower()
             if not form.getvalue('aid'):
-                vote = form.getvalue('vote').lower()
                 #qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
                 cmd = ['./question', 'vote', vote, qid]
                 print cmd
                 proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             else:
-                vote = form.getvalue('vote').lower()
-                qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
+                #qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
                 aid = form.getvalue('aid').strip(' \t\n\r')
                 cmd = ['./question', 'vote', vote, qid, aid]
                 print cmd
