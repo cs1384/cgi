@@ -79,7 +79,7 @@ elif action == 'create':
                 rand =  int(random.random()*1000000)
                 name = 'q' + str(rand)
                 path = '/home/ytl264/.question/questions/' + name
-                print path
+                #print path
                 if not os.path.exists(path):
                     break
         else:
@@ -254,7 +254,7 @@ elif action == 'answer':
                 rand =  int(random.random()*1000000)
                 name = 'a' + str(rand)
                 path = '/home/ytl264/.question/answers/'+uid+'/'+qname+'/' + name
-                print path
+                #print path
                 if not os.path.exists(path):
                     break
         else:
