@@ -86,7 +86,6 @@ elif action == 'create':
             name = form.getvalue('name')
         #print name
         cmd = ['./question', 'create', name, question]
-        print cmd
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
         std = proc.communicate()
         if proc.returncode != 0:
@@ -109,13 +108,11 @@ elif action == 'view':
             if not form.getvalue('aid'):
                 #qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
                 cmd = ['./question', 'vote', vote, qid]
-                print cmd
                 proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             else:
                 #qid = form.getvalue('qid').strip(' \t\n\r').lstrip('@')
                 aid = form.getvalue('aid').strip(' \t\n\r')
                 cmd = ['./question', 'vote', vote, qid, aid]
-                print cmd
                 proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         cmd = ['./question', 'view', qid]
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -263,7 +260,6 @@ elif action == 'answer':
         else:
             name = form.getvalue('name')
         cmd = ['./question', 'answer', qid, name, answer]
-        print cmd
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
         std = proc.communicate()
         if proc.returncode != 0:
