@@ -126,23 +126,34 @@ elif action == 'view':
             print std[1]
             print '<button type="button" onclick="history.go(-1)">Back</button>'
         else:
-            count = 0
+            head = True
+            division = True
+            body = ''
             token = []
             list = []
             for line in content:
-                if count >= 3:
-                    if count % 3 == 0:
-                        token = line.split(' ')
-                    elif count % 3 == 1:
-                        print token
-                        ans = Entry(token[0], token[1], token[2], line)
-                        list.append(ans)
+                if head and division:
+                    token = line.split(' ')
+                    division = False
+                elif head:
+                    if '====' in line:
+                        q = Entry(token[0], '', token[1], body)
+                        body = ''
+                        division = True
+                        head = False
+                    else:
+                        body = body + line
+                elif division:
+                    token = line.split(' ')
+                    division = False
                 else:
-                    if count % 3 == 0:
-                        token = line.split(' ')
-                    elif count % 3 == 1:
-                        q = Entry(token[0], '', token[1], line)
-                count = count + 1
+                    if '====' in line:
+                        ans = Entry(token[0], token[1], token[2], body)
+                        body = ''
+                        list.append(ans)
+                        division = True
+                    else:
+                        body = body + line
             print '<div style="margin:0 0 0 1%;font-size:30px;width:30%;">'
             print q.content
             #print '<div style="float:left;font-size:15px;">'
