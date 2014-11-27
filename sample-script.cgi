@@ -31,16 +31,18 @@ if not form.getvalue('action'):
 
 action = form.getvalue('action')
 
-print "Content-type:text/html\r\n\r\n"
-print '<html>'
-print '<head>'
-print '<title>ytl264</title>'
-print '</head>'
-print '<body>'
-print '<h2>TIN - Open Sourse Tool HW3</h2>'
-
 if action == 'vote':
+    print "Content-type:text/html\r\n\r\n"
     print 'heelo'
+else:
+    print "Content-type:text/html\r\n\r\n"
+    print '<html>'
+    print '<head>'
+    print '<title>ytl264</title>'
+    print '</head>'
+    print '<body>'
+    print '<h2>TIN - Open Sourse Tool HW3</h2>'
+
 
 action = form.getvalue('action')
 
