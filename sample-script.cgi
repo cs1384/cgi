@@ -29,6 +29,11 @@ if form.getvalue('action') == 'vote':
 if not form.getvalue('action'):
     print 'Location: http://cs.nyu.edu/cgi-bin/cgiwrap/~ytl264/sample-script.cgi?action=list'
 
+action = form.getvalue('action')
+
+if action == 'vote':
+    print 'heelo'
+
 print "Content-type:text/html\r\n\r\n"
 print '<html>'
 print '<head>'
@@ -38,6 +43,9 @@ print '<body>'
 print '<h2>TIN - Open Sourse Tool HW3</h2>'
 
 action = form.getvalue('action')
+
+if action == 'vote':
+    print 'heelo'
 
 if action == 'list':
     if not form.getvalue('uid'):
