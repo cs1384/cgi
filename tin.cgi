@@ -74,7 +74,7 @@ elif action == 'create':
     else:
         question = form.getvalue('question')
         #print question
-        if not form.getvalue('name')
+        if not form.getvalue('name'):
             while True:
                 rand =  int(random.random()*1000000)
                 name = 'q' + str(rand)
@@ -244,7 +244,7 @@ elif action == 'answer':
         qname = form.getvalue('qname')
         qid = uid + '/' + qname
         answer = form.getvalue('answer')
-        if not form.getvalue('name')
+        if not form.getvalue('name'):
             while True:
                 rand =  int(random.random()*1000000)
                 name = 'a' + str(rand)
